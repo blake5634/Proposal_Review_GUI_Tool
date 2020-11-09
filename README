@@ -1,0 +1,109 @@
+    Proposal Reviewing Tool
+    Basic Instructions
+
+    (C) Blake Hannaford  June 2016
+     rev 1.1  Oct 2017
+     rev 1.2  Oct 2020
+
+System Requirements:
+
+This package requires python with the Tkinter/ttk packages installed.
+
+The package has been developed and tested in Ubuntu linux.  It might work on
+Windows or Mac as well.
+
+PDF reader:   the code defaults to using acroread to display PDFs.  To change
+to your favorite PDF reader, search for 'acroread' in PRT.py and change it to
+whatever you like.
+
+Usage:
+
+The use case is to receive a package of research proposals as .pdfs to review
+as well as a template for the written critique and criteria for numerical
+scoring.   All materials related to a given review project are contained in a
+project folder or directory you must set up prior to using the tool.   There are
+three supplied example project folders:
+
+        Proj01:      An absolute minimal folder
+        Proj02:      An NIH style example
+        Proj03:      An NSF style example
+
+There are two key files which must appear in your project folder.
+
+
+ 1) apps.csv
+
+The first line of apps.csv is
+
+Due Date: 1-Nov-2020
+
+(edit for your due date)
+
+You can generate and export this in a spreadsheet.  There are
+four fields (columns) for each proposal:
+
+ ID, Title, PI, Institution
+
+The ID should be the filename of the proposal's PDF (minus the
+.pdf extension).    Example:
+
+Due Date: 1-Nov-2020
+R42xuzlkjer-01, Black holes at the center of the earth, Einstein A., Berlin Patent Office
+R43asdkrurc-01, Effect of sensor noise on estimation of surgical tasks, King, D., University of South Texas
+
+etc etc
+
+ 2) rev_template.txt
+
+This is based on the review specifications from the sponsor.  There are example
+files in "templates/", below the distribution directory:
+
+        rev_template_NSF_June16.txt   for NSF proposals
+        rev_template_NIH_June16.txt   for NIH proposals
+
+Copy one of these into your project folder and rename it rev_template.txt.  You will
+probably need to edit for each project it since agencies frequency change
+or specialize their criteria.
+
+Then copy or download the proposal pdfs into your project folder.   The file
+names must match the 'ID's in apps.csv.
+
+Example:
+
+    ID = 'R21 EY123456-01'       filename 'R21 EY123456-01.pdf'
+
+Finally, run it:
+
+    >python PRT.py Proj02    (where Proj02 is your project name)
+
+
+Hopefully the GUI is self explanatory.    The top row operates on proposals.
+Select your proposal with the up/down arrows or mousing the menu.  'View' opens
+the pdf.   The final two buttons output your review as a text file, and outputs
+your scores as a spreadheet respectively. The next row identifies the current
+proposal details.
+
+Next you select a Criterion, response field, and score (when enabled).    To the
+right you can add a couple of frequently used responses.
+
+Type your text into the window for each Criterion and field.  Whenever you
+change criteria/fields and the text is changed, your entire review is
+automatically saved.
+
+A status bar shows you total character count for the review (coming soon, other progress
+measures)
+
+At the bottom, you can save the current proposal or quit.
+
+### New: Conflict of Interest checking tool.   
+
+1. Sponsor sends you a password protected PDF containing all proposal investigators and affiliations.
+2. Document your personal relationships in a `.csv` file.
+2. run `>python3 coi_checker.py` to check for any matching names with your personal relationships.
+
+### New: Graphically review your progress:
+
+1. Click the new "Progress Graph" button
+2. Run >python2 comp_radar.py
+
+

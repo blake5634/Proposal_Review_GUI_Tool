@@ -1,0 +1,163 @@
+#  rev_template.txt
+
+<DUE>1-Nov-2020
+<ID>
+<PI>
+<TI>
+
+<CRITERION> <Overall Impact> 
+
+<instructions>  (BRP 2017) Reviewers will provide an overall impact score to reflect their assessment of the likelihood for the project to exert a sustained, powerful influence on the research field(s) involved, in consideration of the following review criteria and additional review criteria (as applicable for the project proposed). 
+
+Overall Impact Write a paragraph summarizing the factors that informed your Overall Impact score.
+
+<general comments>
+
+<score> 
+<end>
+
+<CRITERION> <Significance> 
+<general comments>
+
+<strengths>
+<weaknesses>
+
+<score>
+
+<end>
+
+<CRITERION> <Investigator(s)> 
+<general comments>
+
+<strengths>
+<weaknesses>
+
+<score>
+
+
+<end>
+<CRITERION> <Innovation>
+<general comments>
+
+<strengths>
+<weaknesses>
+
+<score>
+
+
+<end>
+<CRITERION> <Approach>
+<general comments>
+
+<strengths>
+<weaknesses>
+
+<score>
+
+
+<end>
+<CRITERION> <Environment> 
+<general comments>
+<strengths>
+<weaknesses>
+
+<score>
+
+<end>
+
+<CRITERION> <Leadership Plan>
+<instructions>Comments (Required Unless Not Applicable): 
+<comments>
+
+
+<CRITERION> <Milestones and Timeline>
+<instructions>Comments (Required Unless Not Applicable): 
+<comments>
+
+
+<CRITERION> <Protections for Human Subjects>
+<instructions>Comments (Required Unless Not Applicable): 
+<comments>
+
+
+<end>
+<CRITERION> <Data and Safety Monitoring Plan>
+<general comments>
+
+<instructions>(Applicable for Clinical Trials Only) Comments (Required Unless Not Applicable): 
+ 
+
+<end>
+
+<CRITERION> <Inclusion of Women, Minorities and Children> 
+
+<instructions>Applicable Only for Human Subjects research and not IRB Exemption #4. Comments (Required Unless Not Applicable): 
+
+<Sex/Gender (distribution justified or not justified)>
+ 
+<Race/Ethnicity (distribution justified or not justified)>
+
+<NIH Phase III trials only: valid design and analysis (acceptable/not-accpetable)>
+
+<end>
+
+<CRITERION> <Vertebrate Animals>
+<instructions> Is the proposed research involving vertebrate animals scientifically appropriate, including the justification for animal usage and protections for research animals described in the Vertebrate Animal section?
+
+<general comments>
+ 
+ 
+
+<end>
+
+<CRITERION> <Biohazards>
+<comments>
+<end>
+
+<CRITERION> <Resubmissions>
+<comments>
+<end>
+
+<CRITERION> <Renewals>
+<comments>
+<end>
+
+<CRITERION> <Revisions>
+<comments>
+<end>
+
+<CRITERION> <Applications from Foreigh Organizations>
+<comments>
+<end>
+
+<CRITERION> <Select Agents>
+<comments>
+<end>
+
+<CRITERION> <Resource Sharing Plans>
+<comments>
+<end>
+
+
+<CRITERION> <Authentication of Key Biological and/or Chemical Resources >
+
+<instructions>Comments (Required Unless Not Applicable): 
+<general comments>
+ 
+
+<end>
+<CRITERION> <Budget and Period of Support>
+
+<instructions>Recommended budget modifications or possible overlap identified:
+<general comments>
+ 
+
+<end>
+<CRITERION> <Additional Comments to Applicant>
+
+<instructions>Reviewers may provide guidance to the applicant or recommend against resubmission without fundamental revision.
+Additional Comments to Applicant (Optional)
+<general comments>
+  
+
+<end>
