@@ -373,7 +373,7 @@ class ReviewTool(ttk.Frame):
                                   c.fields[f] = cur_text
 
                  
-          if(True):  # good for debugging
+          if(False):  # good for debugging
                 print "Selected "
                 print "       Proposal: ", self.selitm_proposal.get()
                 print "      Criterion: ", self.selitm_criterion.get()
