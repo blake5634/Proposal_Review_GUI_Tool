@@ -14,6 +14,10 @@ import Levenshtein as sed
 
 import regex as re
 
+# Customize these for yourself
+MYUNIV = 'University of Washington'
+# super similar but not a COI(!)
+EXUNIVS = ['Washington University', 'Washington State University']
 
 NIHpropno = re.compile('[0-9]R[0-9][0-9][A-Z]*[0-9]{6}[0][0-9](A1)?')
 NIHpropstub = re.compile('[0-9]R[0-9][0-9][A-Z]*')
@@ -32,7 +36,20 @@ def filter_non_printable(str):
   #return ''.join(c for c in str if unicodedata.category(c) in UCNAME)
   return ''.join(c for c in str if c in ALLOWEDCHARS)
 
-
+def match_unis(a,b):
+    a = a.lower()
+    a = a.replace('university','')
+    a = a.replace('of','')
+    a = a.replace(' ','')
+    b = b.lower()
+    b = b.replace('university','')
+    b = b.replace('of','')
+    b = b.replace(' ','')
+    if sed.distance(a,b) < 3:
+        return True
+    else:
+        return False
+    
 def is_PI_name(s):
     exwds = 'LLC INC PROFESSOR ASSISTANT ASSOCIATE UNIVERSITY ASSOCIATES INNOVATION MEDICAL SURGICAL  INCORPORATED PARTNERS RHL RHLA RCA PT NOI'.split()
     val = True
@@ -189,17 +206,17 @@ class grant():
                             c2 = line
                             self.coiHits.append(c1)
                             retval = True
-           
-                            
-            ##print('checking1: ',name)
-            #for n in name.split():
-                ##print('    checking2: ', n)
-                #for line in self.lines:
-                    ##print('             ',line)
-                    #if n in line.split():
-                        #retval = True
-                        #print('Potential COI: ', self.grantNo, self.PIName, name)
-                        #self.coiHits.append(name)
+        # check for own school
+        for line in self.lines:
+            for u in EXUNIVS:
+                if line.strip() == u:
+                    return False
+            if match_unis(MYUNIV, line):
+                c1 = MYUNIV
+                c2 = line
+                self.coiHits.append(c1)
+                retval = True
+                
         if retval:
             print('Potential COI: ', gn)
             print('     ', c1,' <-> ', c2 )
