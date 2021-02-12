@@ -97,7 +97,7 @@ class review:
               foundsomething = True
               if(DEB):
                   print "        *******************  this criteria requires (just plain) comments"
-              t.fields["comments"]  = ""
+              t.fields["general comments"]  = ""  # combine two types of comments
             if(keys[0] == "strengths"):
               foundsomething = True
               if(DEB):

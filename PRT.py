@@ -69,7 +69,7 @@ class ReviewTool(ttk.Frame):
         due_date_str = apps.readline().split(':')[1].rstrip().strip()
         print(' Reviews Due Date: '+due_date_str)
         print('------')
-        for line in apps:
+        for line in apps:          # TODO: use csv module for ignoring , in quoted strings.
             keys = line.split(',')
             tmpIDstring = keys[0].strip()
             ##    look for a pickle file 

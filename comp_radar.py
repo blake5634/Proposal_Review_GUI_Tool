@@ -21,8 +21,8 @@ from dateutil.parser import parse
 
 f= open('rev_prog.csv','r')
 
-fc = []
-cc = []
+fc = []  # field completion count
+cc = []  # character count
 id = []
 
 for line in f:
@@ -68,8 +68,8 @@ plt.xticks(angles[:-1], ticks, color='blue', size=16)
 plt.ylim(0,1.00)
  
 # Plot data
-ax.plot(angles, fc, linewidth=1, linestyle='solid')
-ax.plot(angles, cc, linewidth=1, linestyle='solid')
+ax.plot(angles, fc, 'r', linewidth=1,  linestyle='solid')
+ax.plot(angles, cc, 'b', linewidth=1, linestyle='solid')
  
 # Fill area
 ax.fill(angles, cc, 'b', alpha=0.1)
