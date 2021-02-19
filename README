@@ -44,14 +44,16 @@ four fields (columns) for each proposal:
 
  ID, Title, PI, Institution
 
-The ID should be the filename of the proposal's PDF (minus the
+The ID should be the official proposal number (sometimes the filename of the proposal's PDF minus the
 .pdf extension).    Example:
 
 Due Date: 1-Nov-2020
-R42xuzlkjer-01, Black holes at the center of the earth, Einstein A., Berlin Patent Office
-R43asdkrurc-01, Effect of sensor noise on estimation of surgical tasks, King, D., University of South Texas
+1R42xuzlkjer-01, Black holes at the center of the earth, Einstein A., Berlin Patent Office
+2R43asdkrurc-01, Effect of sensor noise on estimation of surgical tasks, King, D., University of South Texas
 
 etc etc
+
+For NIH it is good to use the full prefix: "1R43" "2R01" etc.    The app will decode and display meaning of these if it recognizes them. 
 
  2) rev_template.txt
 

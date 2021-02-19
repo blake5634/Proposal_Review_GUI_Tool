@@ -47,6 +47,15 @@ col_txtbg  = 'honeydew'
 prog_definition_string = 'Progress: :'
 prog_def_width = len(prog_definition_string) + 2
 
+
+NIH_Prop_type_Codes = {'1R41' : 'STTR Ph 1',
+            '1R43' : 'SBIR Ph 2',
+            '2R42' : 'STTR Ph 2 or Ph 2 Comp. Renewal',
+            '2R44' : 'SBIR Ph 2 or Ph 2 Comp. Renewal',
+            '1R42' : 'STTR Fast Track Ph 1&2',
+            '1R44' : 'SBIR Fast Track Ph 1&2'
+            }
+
 class ReviewTool(ttk.Frame):
     def __init__(self, parent, proj_name):
         #### read in the proposal info file
@@ -487,7 +496,17 @@ class ReviewTool(ttk.Frame):
             total_todo += r.nfields
         progvalstring = '[all: {:3}/{:3} fields], [this prop: {:5} chars]'.format(total_comp, total_todo, char_cnt)
         self.prog_value['text'] = progvalstring
-
+        
+    # decode prefix application type  (e.g. NIH: 1R01)
+    def id_to_app_type(self,prop): 
+        code = prop.ID[0:4]
+        if code in NIH_Prop_type_Codes.keys():
+            prtype = NIH_Prop_type_Codes[code]
+        else:
+            prtype = 'Type: '+code
+        return prtype
+    
+        
     def update_proposal(self):
           ##print "Updating Proposal"
           for r in self.reviews:
@@ -497,8 +516,10 @@ class ReviewTool(ttk.Frame):
               if tmp == r.ID:
                 self.selobj_proposal = r
                 
+          
           string = 'PI: {:20.20} Inst: {:20.20}  Title: {:50.50}'.format(self.selobj_proposal.PI, self.selobj_proposal.Institution, self.selobj_proposal.Title)
-          self.prop_display['text'] = string
+          string += '\n' + self.id_to_app_type(self.selobj_proposal)
+          self.prop_display['text'] = string 
  
           
     def update_criterion(self):
