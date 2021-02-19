@@ -48,12 +48,12 @@ prog_definition_string = 'Progress: :'
 prog_def_width = len(prog_definition_string) + 2
 
 
-NIH_Prop_type_Codes = {'1R41' : 'STTR Ph 1',
-            '1R43' : 'SBIR Ph 2',
-            '2R42' : 'STTR Ph 2 or Ph 2 Comp. Renewal',
-            '2R44' : 'SBIR Ph 2 or Ph 2 Comp. Renewal',
-            '1R42' : 'STTR Fast Track Ph 1&2',
-            '1R44' : 'SBIR Fast Track Ph 1&2'
+NIH_Prop_type_Codes = {'1R41' : 'STTR Phase 1',  'R41 ' : 'STTR Phase 1',
+            '1R43' : 'SBIR Phase 1',  'R43 ' : 'SBIR Phase 1',
+            '2R42' : 'STTR Phase 2 or Phase 2 Comp. Renewal',
+            '2R44' : 'SBIR Phase 2 or Phase 2 Comp. Renewal',
+            '1R42' : 'STTR Fast Track Phase 1&2',
+            '1R44' : 'SBIR Fast Track Phase 1&2', 'R44 ': 'SBIR Fast Track Phase 1&2'
             }
 
 class ReviewTool(ttk.Frame):

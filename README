@@ -97,6 +97,9 @@ measures)
 
 At the bottom, you can save the current proposal or quit.
 
+Note that after you start reviewing you cannot change your apps.csv or template.txt files, PRT.py will get
+confused.
+
 ### New: Conflict of Interest checking tool.   
 
 1. Sponsor sends you a password protected PDF containing all proposal investigators and affiliations.
