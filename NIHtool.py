@@ -142,21 +142,21 @@ class review:
     self.completed_fields = 0  #  re-initialize these
     self.nfields = 0
     self.char_count = 0   # total character count
-    min = {}
-    min['val'] = 9.9
-    min['crit'] = 'undefined'
+    min_comp = {}
+    min_comp['val'] = 9.9
+    min_comp['crit'] = 'undefined'
     
     for c in self.criteria:
         c.comp_check()
         #print '---- checking ',c.name
         self.nfields += c.n_fields
-        # review thoroughness = min(criteria completeness)
-        if(c.thoroughness < min['val']):
-            min['val'] = c.thoroughness 
-            min['crit'] = c.name
+        # review thoroughness = min_comp(criteria completeness)
+        if(c.thoroughness < min_comp['val']):
+            min_comp['val'] = c.thoroughness 
+            min_comp['crit'] = c.name
         self.char_count += c.char_count
         self.completed_fields += c.n_fields-c.n_empty  # num of completed fields
-    self.least_complete = min
+    self.least_complete = min_comp
         
   def get_score(self):
       if (self.nscores > 0):
@@ -253,7 +253,7 @@ class criterion:
   # compute the "completeness" of entries for this criterion
   def comp_check(self):
     self.char_count = 0
-    min = 99999
+    min_len = 99999
     n = 0
     n_flds = len(self.fields.keys())
     n_empty = n_flds
@@ -268,8 +268,8 @@ class criterion:
                 EMPTY = False
             if not EMPTY:
                 n_empty -= 1
-            if(l < min):
-                min = l
+            if(l < min_len):
+                min_len = l
             self.char_count += len(self.fields[f])
         self.n_fields = n_flds
         self.n_empty = n_empty
