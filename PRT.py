@@ -25,7 +25,7 @@ import Tkinter as Tk
 import ttk as ttk
 import tkFont
 import datetime as dt
-
+from dateutil.parser import parse
 
 import os.path
 import sys              # for command line args and running pdf viewer
@@ -75,8 +75,8 @@ class ReviewTool(ttk.Frame):
         self.priorobj_criterion.fields['general comments'] = '--not yet entered--'
         self.priorobj_criterion.fields['weaknesses'] = '--not yet entered--'
         self.priorobj_criterion.fields['strengths'] = '--not yet entered--'
-        due_date_str = apps.readline().split(':')[1].rstrip().strip()
-        print(' Reviews Due Date: '+due_date_str)
+        self.due_date_str = apps.readline().split(':')[1].rstrip().strip()
+        print(' Reviews Due Date: '+self.due_date_str)
         print('------')
         for line in apps:          # TODO: use csv module for ignoring , in quoted strings.
             keys = line.split(',')
@@ -116,7 +116,7 @@ class ReviewTool(ttk.Frame):
         s6 = ttk.Style()
         s6.configure('NIH2.TMenubutton',  background=col_light, width=12)
         
-        self.parent.title("Proposal Review Tool: " + proj_name+'    due: '+due_date_str)      #   PRT!
+        self.parent.title("Proposal Review Tool: " + proj_name+'    due: '+self.due_date_str)      #   PRT!
         self.pack(fill=Tk.BOTH,expand=True)
 
         # Build the frame hierarchy  
@@ -460,24 +460,25 @@ class ReviewTool(ttk.Frame):
             idcode = idcode[-4:]
             ids[i] = idcode
         # write a csv for graphing
-        fname = "rev_prog.csv"
+        fname = self.project+"/rev_prog.csv"
         f = open(fname, 'w')
         for i,fcpct in enumerate(fieldcompspct):
             #  proposal ID string, %field count, %char cnt, #completed fields
             print>>f, '{}, {:4.2f}, {:4.2f}, {}'.format(ids[i],fcpct,charspct[i],fieldcomps[i])
         f.close
         # append to a csv for work-over-time graph
-        fname = "rev_work.csv"
+        fname = self.project+"/rev_work.csv"
+        print 'Will try to open: '+fname
         dateTimeFormat = '%Y-%m-%d, %H:%M:%S'
         date = str(dt.datetime.now().strftime(dateTimeFormat))
-        try:
-            f = open(fname,'r') # if file is empty, due date becomes first line
-            due_date_fmt = parse(due_date_str).strftime(dateTimeFormat)
+        if not os.path.exists(fname):
+            f = open(fname,'w') # if file is empty, due date becomes first line
+            due_date_fmt = parse(self.due_date_str).strftime(dateTimeFormat)
             print>>f, due_date_fmt
             # print first row of data
             print>>f, '{}, {}, {}, {:4.2f}, {:4.2f}'.format(date,total_chars,total_fields,pct_chars,pct_fields)
             f.close
-        except: 
+        else: 
             f = open(fname, 'a')
             # add today's row of data 
             print>>f, '{}, {}, {}, {:4.2f}, {:4.2f}'.format(date,total_chars,total_fields,pct_chars,pct_fields)

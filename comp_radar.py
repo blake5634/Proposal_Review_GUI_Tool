@@ -5,10 +5,12 @@ import numpy as np
 from math import pi
 import datetime as dt
 from dateutil.parser import parse
+import sys              # for command line args 
+import re
 
 # for use with PRT.py proposal review tool
 #
-#   to use, open PRT.py
+#   to use, open PRT.py  ProjectDir/
 #           click "Progress Graph" button
 #           run this program.
 #
@@ -19,14 +21,28 @@ from dateutil.parser import parse
 #####################  "Radar" style radial status plot
 # get data
 
-f= open('rev_prog.csv','r')
+
+   
+    #print 'Number of arguments:', len(sys.argv), 'arguments.'
+    #print 'Argument List:', str(sys.argv)
+
+if(len(sys.argv) != 2):
+    print "Usage: python comp_radar.py  <projectfoldername>"
+    print "  please add a project folder name to the command line."
+    quit()
+else:
+    proj_name = str(sys.argv[1])
+    # delete trailing '\' if present
+    proj_name = re.sub(r'\/$','',  proj_name)
+
+f= open(proj_name + '/rev_prog.csv','r')
 
 fc = []  # field completion count
 cc = []  # character count
 id = []
 
 for line in f:
-    a,b,c = line.split(',')
+    a,b,c,d = line.split(',')
     c = c.strip()
     b = b.strip()
     fc.append(float(b))
@@ -35,8 +51,8 @@ for line in f:
 
 N = len(cc)
  
-for i in range(N):
-    print '{} {}'.format(fc[i],cc[i])
+#for i in range(N):
+    #print '{} {}'.format(fc[i],cc[i])
     
 # We are going to plot the first line of the data frame.
 # But we need to repeat the first value to close the circular graph:
@@ -80,7 +96,7 @@ plt.title( 'Completion: blue = characters, red = fields',size=24)
 
 #####################  Plot progress over time
 
-f= open('rev_work.csv','r')
+f= open(proj_name + '/rev_work.csv','r')
 dateTimeFormat = '%Y-%m-%d, %H:%M:%S'
 
 
@@ -106,7 +122,7 @@ fig,ax = plt.subplots(figsize=(20,8))
 #start_dt = day[0]
 #end_dt = day[-1] 
 end_dt = duedate
-print('Plotting due date: ', end_dt.strftime(dateTimeFormat)) 
+#print('Plotting due date: ', end_dt.strftime(dateTimeFormat)) 
 start_dt = duedate - dt.timedelta(days=30)
 Nxticks = 5
 time_inc = (end_dt-start_dt)/Nxticks
@@ -118,7 +134,7 @@ xticks = []
 #dts = dts[:-1]
 #np.append(dts, [end_dt+time_inc])
 print('-----')
-print day, chars
+#print day, chars
 ax.xaxis.set_major_formatter(mpd.DateFormatter('%Y-%m-%d'))
 ax.xaxis.set_major_locator(mpd.DayLocator(interval=1))
 ax.set_ylabel('Total Characters Entered',color='blue',fontsize=14)

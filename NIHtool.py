@@ -81,7 +81,7 @@ class review:
                 #print '         line ', lno
                 #print line
                 #quit()
-            DEB = 0
+            DEB = False
             if(keys[0] == "score"):
               foundsomething = True
               if(DEB):
@@ -120,7 +120,7 @@ class review:
               foundsomething = True
               self.criteria.append(t)
               if DEB:
-                  print ' Found a criterion: ', t, tcnt
+                  print ' Found a criterion: ', t.name, tcnt
               tcnt += 1
               mode = "basic"
             #if(not foundsomething):
@@ -151,7 +151,7 @@ class review:
     
     for c in self.criteria:
         c.comp_check()
-        print '---- checking ',c.name, 
+        #print '---- checking ',c.name, 
         self.nfields += c.n_fields
         # review thoroughness = min_comp(criteria completeness)
         if(c.thoroughness < min_comp['val']):
