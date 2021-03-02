@@ -373,12 +373,12 @@ class ReviewTool(ttk.Frame):
               
                for r in self.reviews:
                   for c in r.criteria:
-                      print 'checking [{}] criterion'.format(c.name)
+                      #print 'checking [{}] criterion'.format(c.name)
                       if c.name == cc:
-                          print 'crit match'
+                          #print 'crit match'
                           for f in c.fields.keys():
                               if f == cf:
-                                  print '             copying ', cur_text
+                                  print '             copying ', cur_text , ' to ', c.name, c.fields[f]
                                   c.fields[f] = cur_text
 
                  
@@ -424,12 +424,14 @@ class ReviewTool(ttk.Frame):
           
           self.enable = 1
           
-          
+    #  output some data for graphing progress on reviews.
+    #    (make plots with "comp_radar.py" )
     def prog_data_graph(self):
-        self.selobj_proposal.check_comp()  # update completeness on currently active propo.
         # find completion status of each review
         fieldcomps = []
+        fieldcompspct = []
         chars = []
+        charspct = []
         ids = []
         char_target = 2500   # goal for how many chars in a review
         for r in self.reviews:
@@ -441,13 +443,18 @@ class ReviewTool(ttk.Frame):
         total_chars = sum(chars)
         total_fields = sum(fieldcomps)
         total_fields_needed = total_todo*len(self.reviews)
+        print '----------------------------------------------------'
+        print 'Fields to do per prop.: ', total_todo
+        print 'Total fields: ', total_fields
+        print 'total fields needed: ', total_fields_needed
+        print '----------------------------------------------------'
         pct_chars = total_chars/float(char_target*len(self.reviews))
         pct_fields = total_fields/float(total_fields_needed)
         # compute percentages
         for i,fc in enumerate(fieldcomps):
-            fieldcomps[i] = float(fc)/float(total_todo)
+            fieldcompspct.append( float(fc)/float(total_todo) )
         for i,cc in enumerate(chars):
-            chars[i]  = float(cc)/float(char_target)
+            charspct.append( float(cc)/float(char_target) )
         for i, id in enumerate(ids):
             idcode = id.split('-')[0]
             idcode = idcode[-4:]
@@ -455,8 +462,9 @@ class ReviewTool(ttk.Frame):
         # write a csv for graphing
         fname = "rev_prog.csv"
         f = open(fname, 'w')
-        for i,fc in enumerate(fieldcomps):
-            print>>f, '{}, {:4.2f}, {:4.2f}'.format(ids[i],fc,chars[i])
+        for i,fcpct in enumerate(fieldcompspct):
+            #  proposal ID string, %field count, %char cnt, #completed fields
+            print>>f, '{}, {:4.2f}, {:4.2f}, {}'.format(ids[i],fcpct,charspct[i],fieldcomps[i])
         f.close
         # append to a csv for work-over-time graph
         fname = "rev_work.csv"

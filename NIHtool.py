@@ -52,7 +52,7 @@ class review:
 
 
     mode = "basic"
-
+    tcnt = 0
     lno = 0
     for line in template:
       if (re.match(whitespace,line)):  # skip whitespace
@@ -119,6 +119,9 @@ class review:
             if(keys[0] == "end"):              
               foundsomething = True
               self.criteria.append(t)
+              if DEB:
+                  print ' Found a criterion: ', t, tcnt
+              tcnt += 1
               mode = "basic"
             #if(not foundsomething):
                 #print '  Not finding tokens in rev_template.txt'
@@ -148,7 +151,7 @@ class review:
     
     for c in self.criteria:
         c.comp_check()
-        #print '---- checking ',c.name
+        print '---- checking ',c.name, 
         self.nfields += c.n_fields
         # review thoroughness = min_comp(criteria completeness)
         if(c.thoroughness < min_comp['val']):
