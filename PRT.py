@@ -443,11 +443,11 @@ class ReviewTool(ttk.Frame):
         total_chars = sum(chars)
         total_fields = sum(fieldcomps)
         total_fields_needed = total_todo*len(self.reviews)
-        print '----------------------------------------------------'
-        print 'Fields to do per prop.: ', total_todo
-        print 'Total fields: ', total_fields
-        print 'total fields needed: ', total_fields_needed
-        print '----------------------------------------------------'
+        #print '----------------------------------------------------'
+        #print 'Fields to do per prop.: ', total_todo
+        #print 'Total fields: ', total_fields
+        #print 'total fields needed: ', total_fields_needed
+        #print '----------------------------------------------------'
         pct_chars = total_chars/float(char_target*len(self.reviews))
         pct_fields = total_fields/float(total_fields_needed)
         # compute percentages
